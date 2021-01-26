@@ -6,10 +6,6 @@ public class Main {
     public static void main(String[] args) {
         EasyJSON easyJSON = new EasyJSON();
 
-        try {
-            easyJSON.parseJSON("C:\\Users\\lenovo\\IdeaProjects\\JSON\\resources\\users.json");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        easyJSON.getCurrentWeather("./resources/kosice_current_weather.json");
     }
 }

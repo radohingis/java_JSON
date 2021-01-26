@@ -8,6 +8,7 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Date;
 
 public class EasyJSON {
     public void parseJSON(String file) throws IOException {
@@ -26,5 +27,38 @@ public class EasyJSON {
                 System.out.println(message);
             }
         } catch (ParseException e) { e.printStackTrace(); }
+    }
+
+    public void getCurrentWeather(String file){
+        JSONParser parser = new JSONParser();
+
+        try (Reader reader = new FileReader(file)){
+            JSONObject jsonObj = (JSONObject) parser.parse(reader);
+
+            String town = (String) jsonObj.get("name");
+
+            System.out.println("City: "+town);
+
+            JSONObject main  = (JSONObject) jsonObj.get("main");
+
+            double temperature = Math.floor((double) main.get("temp") - 273.15);
+
+            System.out.println("Current temperature: "+temperature+"°C");
+
+            long pressure = (long) main.get("pressure");
+
+            System.out.println("Current atmospheric pressure: " + pressure + "hPa");
+
+            long visibility = (long) jsonObj.get("visibility");
+
+            System.out.println("Current visibility: " + visibility + "m");
+
+            long humidity = (long) main.get("humidity");
+
+            System.out.println("Current humidity: "+humidity+"%");
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
