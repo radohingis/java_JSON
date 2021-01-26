@@ -8,7 +8,6 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Date;
 
 public class EasyJSON {
     public void parseJSON(String file) throws IOException {
